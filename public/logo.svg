@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 180" fill="none">
+  <!-- Left Wing -->
+  <path d="M100 80 C85 75, 60 60, 30 40 C20 34, 10 30, 5 35 C0 40, 5 55, 15 65 C30 80, 55 90, 75 92 Z" fill="#1e3a5f"/>
+  <path d="M100 80 C88 78, 70 70, 45 55 C38 50, 28 48, 25 52 C20 58, 30 70, 42 78 C58 88, 75 90, 85 90 Z" fill="#2d5a8e"/>
+  <!-- Right Wing -->
+  <path d="M100 80 C115 75, 140 60, 170 40 C180 34, 190 30, 195 35 C200 40, 195 55, 185 65 C170 80, 145 90, 125 92 Z" fill="#1e3a5f"/>
+  <path d="M100 80 C112 78, 130 70, 155 55 C162 50, 172 48, 175 52 C180 58, 170 70, 158 78 C142 88, 125 90, 115 90 Z" fill="#2d5a8e"/>
+  <!-- Gear Body -->
+  <circle cx="100" cy="80" r="22" fill="#1e3a5f"/>
+  <circle cx="100" cy="80" r="16" fill="#f8fafc"/>
+  <circle cx="100" cy="80" r="12" fill="#1e3a5f"/>
+  <!-- M Letter -->
+  <text x="100" y="86" text-anchor="middle" fill="#f8fafc" font-family="Arial, sans-serif" font-weight="bold" font-size="18">M</text>
+  <!-- Gear Teeth -->
+  <rect x="96" y="54" width="8" height="8" rx="1" fill="#1e3a5f" transform="rotate(0, 100, 80)"/>
+  <rect x="96" y="98" width="8" height="8" rx="1" fill="#1e3a5f" transform="rotate(0, 100, 80)"/>
+  <rect x="74" y="76" width="8" height="8" rx="1" fill="#1e3a5f"/>
+  <rect x="118" y="76" width="8" height="8" rx="1" fill="#1e3a5f"/>
+  <rect x="78" y="60" width="8" height="8" rx="1" fill="#1e3a5f" transform="rotate(45, 82, 64)"/>
+  <rect x="114" y="60" width="8" height="8" rx="1" fill="#1e3a5f" transform="rotate(-45, 118, 64)"/>
+  <rect x="78" y="92" width="8" height="8" rx="1" fill="#1e3a5f" transform="rotate(-45, 82, 96)"/>
+  <rect x="114" y="92" width="8" height="8" rx="1" fill="#1e3a5f" transform="rotate(45, 118, 96)"/>
+  <!-- Wrench -->
+  <path d="M112 88 L128 104 C130 106, 130 110, 128 112 L126 114 C124 116, 120 116, 118 114 L102 98" stroke="#1e3a5f" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <!-- Company Name -->
+  <text x="100" y="138" text-anchor="middle" fill="#1e3a5f" font-family="Arial, sans-serif" font-weight="bold" font-size="14" letter-spacing="2">MECHANICAL WINGS</text>
+  <text x="100" y="155" text-anchor="middle" fill="#d97706" font-family="Arial, sans-serif" font-weight="bold" font-size="11" letter-spacing="3">AIR-CONDITION</text>
+</svg>
