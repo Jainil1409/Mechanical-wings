@@ -179,14 +179,14 @@ export default function Home() {
               >
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 bg-linear-to-r from-amber-500 to-amber-600 text-white px-8 py-4 rounded-full font-semibold hover:from-amber-600 hover:to-amber-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-amber-200 pulse-glow"
+                  className="btn-animate inline-flex items-center gap-2 bg-linear-to-r from-amber-500 to-amber-600 text-white px-8 py-4 rounded-full font-semibold hover:from-amber-600 hover:to-amber-700 shadow-lg pulse-glow"
                 >
                   <Phone size={18} />
                   Get Free Quote
                 </Link>
                 <Link
                   href="/services"
-                  className="inline-flex items-center gap-2 bg-white text-[#1e3a5f] px-8 py-4 rounded-full font-semibold border-2 border-blue-200 hover:border-blue-400 hover:bg-blue-50 transition-all duration-300"
+                  className="btn-animate inline-flex items-center gap-2 bg-white text-[#1e3a5f] px-8 py-4 rounded-full font-semibold border-2 border-blue-200 hover:border-blue-400 hover:bg-blue-50"
                 >
                   Our Services
                   <ChevronRight size={18} />
@@ -228,10 +228,10 @@ export default function Home() {
                 <span className="text-sm text-gray-500">Follow Us:</span>
                 <div className="flex items-center gap-3">
                   <a
-                    href="https://www.instagram.com/mechanicalwings_ac"
+                    href="https://www.instagram.com/mechanicalwings3008?igsh=MTRiZ2lmN2k0cTNjNQ=="
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-9 h-9 bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400 rounded-lg flex items-center justify-center text-white hover:scale-110 transition-transform"
+                    className="w-9 h-9 bg-linear-to-br from-purple-600 via-pink-500 to-orange-400 rounded-lg flex items-center justify-center text-white hover:scale-110 transition-transform"
                     aria-label="Instagram"
                   >
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -239,7 +239,7 @@ export default function Home() {
                     </svg>
                   </a>
                   <a
-                    href="https://www.facebook.com/mechanicalwings"
+                    href="https://facebook.com/share/1DK4CpscMY/?mibextid=wwXIfr"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-9 h-9 bg-[#1877F2] rounded-lg flex items-center justify-center text-white hover:scale-110 transition-transform"
@@ -250,7 +250,7 @@ export default function Home() {
                     </svg>
                   </a>
                   <a
-                    href="https://www.linkedin.com/company/mechanical-wings-air-condition"
+                    href="https://linkedin.com/in/mechanical-wings-air-condition-252693202"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-9 h-9 bg-[#0A66C2] rounded-lg flex items-center justify-center text-white hover:scale-110 transition-transform"
@@ -289,13 +289,14 @@ export default function Home() {
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                 >
                   <Image
-                    src="/WhatsApp Image 2026-02-27 at 3.04.03 PM.jpeg"
+                    src="/logo-transparent.png"
                     alt="Mechanical Wings Air Condition"
-                    width={400}
-                    height={400}
-                    className="drop-shadow-2xl rounded-2xl"
+                    width={500}
+                    height={310}
+                    className="drop-shadow-2xl"
+                    style={{ width: "auto", height: "auto" }}
                     priority
-                  />
+                  />  
                 </motion.div>
 
                 {/* Decorative glow behind logo */}
@@ -572,14 +573,14 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-white text-[#1e3a5f] px-8 py-4 rounded-full font-semibold hover:bg-blue-50 transition-all duration-300 shadow-lg"
+                className="btn-animate inline-flex items-center justify-center gap-2 bg-white text-[#1e3a5f] px-8 py-4 rounded-full font-semibold shadow-lg hover:bg-blue-50"
               >
                 <Phone size={18} />
                 Contact Us Now
               </Link>
               <a
                 href="tel:+917801929198"
-                className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white px-8 py-4 rounded-full font-semibold hover:bg-white/10 transition-all duration-300"
+                className="btn-animate inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white px-8 py-4 rounded-full font-semibold hover:bg-white/10 hover:border-white/60"
               >
                 Call: +91 7801929198
               </a>

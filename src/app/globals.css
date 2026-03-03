@@ -121,6 +121,20 @@
     animation: pulse-glow 2s ease-in-out infinite;
   }
 
+  /* Animated button hover */
+  .btn-animate {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .btn-animate:hover {
+    transform: scale(1.07) translateY(-3px);
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.25);
+  }
+
+  .btn-animate:active {
+    transform: scale(0.97);
+  }
+
   .animate-float {
     animation: float 3s ease-in-out infinite;
   }

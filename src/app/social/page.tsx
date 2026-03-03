@@ -9,15 +9,15 @@ const socialPlatforms = [
   {
     name: "Instagram",
     icon: "instagram",
-    url: "https://www.instagram.com/mechanicalwings_ac",
-    handle: "@mechanicalwings_ac",
+    url: "https://www.instagram.com/mechanicalwings3008?igsh=MTRiZ2lmN2k0cTNjNQ==",
+    handle: "@mechanicalwings3008",
     tagline: "Daily tips & project showcases",
     bgColor: "bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400",
   },
   {
     name: "Facebook",
     icon: "facebook",
-    url: "https://www.facebook.com/mechanicalwings",
+    url: "https://facebook.com/share/1DK4CpscMY/?mibextid=wwXIfr",
     handle: "Mechanical Wings AC",
     tagline: "Updates, reviews & promotions",
     bgColor: "bg-[#1877F2]",
@@ -25,7 +25,7 @@ const socialPlatforms = [
   {
     name: "LinkedIn",
     icon: "linkedin",
-    url: "https://www.linkedin.com/company/mechanical-wings-air-condition",
+    url: "https://linkedin.com/in/mechanical-wings-air-condition-252693202",
     handle: "Mechanical Wings Air Condition",
     tagline: "Professional network & partnerships",
     bgColor: "bg-[#0A66C2]",
@@ -178,13 +178,13 @@ export default function SocialPage() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/contact"
-                className="px-8 py-3 bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded-full transition-colors text-center"
+                className="btn-animate px-8 py-3 bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded-full transition-colors text-center"
               >
-                Contact Us
+                Talk to Us
               </Link>
               <a
                 href="tel:+917801929198"
-                className="px-8 py-3 bg-white/10 border border-white/30 text-white font-semibold rounded-full hover:bg-white/20 transition-colors flex items-center justify-center gap-2"
+                className="btn-animate px-8 py-3 bg-white/10 border border-white/30 text-white font-semibold rounded-full hover:bg-white/20 transition-colors flex items-center justify-center gap-2"
               >
                 <Phone size={18} />
                 Call Now

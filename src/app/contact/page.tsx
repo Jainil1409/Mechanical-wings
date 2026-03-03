@@ -471,7 +471,7 @@ Please get back to me. Thank you!`;
                     <motion.button
                       type="submit"
                       disabled={!isFormValid}
-                      className={`w-full inline-flex items-center justify-center gap-3 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 shadow-lg ${
+                      className={`btn-animate w-full inline-flex items-center justify-center gap-3 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 shadow-lg ${
                         isFormValid
                           ? "bg-green-500 hover:bg-green-600 hover:shadow-xl cursor-pointer"
                           : "bg-gray-300 cursor-not-allowed"
