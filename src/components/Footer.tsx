@@ -2,13 +2,11 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import {
   Phone,
   Mail,
   MapPin,
   Clock,
-  ArrowUp,
 } from "lucide-react";
 
 const quickLinks = [
@@ -29,10 +27,6 @@ const services = [
 ];
 
 export default function Footer() {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   return (
     <footer className="relative bg-gray-900 text-gray-300">
       {/* Wave Separator */}
@@ -46,19 +40,22 @@ export default function Footer() {
         </svg>
       </div>
 
+      {/* Footer Info */}
       <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 pt-20 pb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <Image
-                src="/WhatsApp Image 2026-02-27 at 3.04.03 PM.jpeg"
-                alt="Mechanical Wings Air Condition"
-                width={48}
-                height={48}
-                className="rounded-xl"
-                style={{ width: "48px", height: "auto" }}
-              />
+              <div className="bg-white p-1.5 rounded-xl shadow-md flex items-center justify-center">
+                <Image
+                  src="/logo-transparent.png"
+                  alt="Mechanical Wings Air Condition"
+                  width={48}
+                  height={48}
+                  className="object-contain"
+                  style={{ width: "48px", height: "auto" }}
+                />
+              </div>
               <div>
                 <h3 className="text-white font-bold text-lg">
                   Mechanical Wings
@@ -198,17 +195,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-
-      {/* Scroll to Top */}
-      <motion.button
-        onClick={scrollToTop}
-        className="fixed bottom-6 right-6 w-12 h-12 bg-[#1e3a5f] text-white rounded-full shadow-lg hover:bg-[#152a45] transition-colors flex items-center justify-center z-40"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        aria-label="Scroll to top"
-      >
-        <ArrowUp size={20} />
-      </motion.button>
     </footer>
   );
 }

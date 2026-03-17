@@ -13,6 +13,7 @@ const navLinks = [
   { href: "/services", label: "Services" },
   { href: "/brands", label: "Brands" },
   { href: "/contact", label: "Contact" },
+  { href: "/calculator", label: "AC Size Calculator" },
   { href: "/social", label: "Follow Us" },
 ];
 
@@ -32,9 +33,9 @@ export default function Navbar() {
   return (
     <>
       {/* Top Bar */}
-      <div className="bg-[#1e3a5f] text-white text-sm py-2 px-6">
-        <div className="max-w-6xl mx-auto flex justify-between items-center flex-wrap gap-2">
-          <div className="flex items-center gap-6">
+      <div className="bg-[#1e3a5f] text-white text-sm py-2 px-4 sm:px-6">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center flex-wrap gap-2">
+          <div className="flex items-center gap-4 sm:gap-6">
             <a
               href="tel:+917801929198"
               className="flex items-center gap-1.5 hover:text-amber-300 transition-colors"
@@ -51,7 +52,7 @@ export default function Navbar() {
               <span className="sm:hidden">Email Us</span>
             </a>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4 sm:gap-3">
             <a href="https://facebook.com/share/1DK4CpscMY/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" className="hover:text-amber-300 transition-colors" aria-label="Facebook">
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
             </a>
@@ -91,12 +92,12 @@ export default function Navbar() {
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 <Image
-                  src="/WhatsApp Image 2026-02-27 at 3.04.03 PM.jpeg"
+                  src="/logo-transparent.png"
                   alt="Mechanical Wings Air Condition"
-                  width={56}
-                  height={56}
-                  className="rounded-xl shadow-md group-hover:shadow-lg transition-shadow"
-                  style={{ width: "56px", height: "auto" }}
+                  width={64}
+                  height={64}
+                  className="group-hover:drop-shadow-lg transition-all duration-300"
+                  style={{ width: "64px", height: "auto", objectFit: "contain" }}
                   priority
                 />
               </motion.div>

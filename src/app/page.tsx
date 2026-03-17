@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import AnimatedSection from "@/components/AnimatedSection";
 import Testimonials from "@/components/Testimonials";
+import ScrollVideoHero from "../components/ScrollVideoHero";
 import {
   Snowflake,
   Wrench,
@@ -102,210 +103,217 @@ const brands = [
 export default function Home() {
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-linear-to-br from-blue-50 via-white to-sky-50">
-        {/* Background Patterns */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 right-20 w-72 h-72 bg-blue-100 rounded-full blur-3xl opacity-40" />
-          <div className="absolute bottom-20 left-20 w-96 h-96 bg-sky-100 rounded-full blur-3xl opacity-30" />
-          <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-blue-50 rounded-full blur-2xl opacity-50" />
-          {/* Floating snowflakes */}
-          {[...Array(6)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute text-blue-200"
-              style={{
-                top: `${15 + i * 15}%`,
-                left: `${10 + i * 15}%`,
-              }}
-              animate={{
-                y: [0, -20, 0],
-                rotate: [0, 180, 360],
-                opacity: [0.3, 0.6, 0.3],
-              }}
-              transition={{
-                duration: 4 + i,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: i * 0.5,
-              }}
-            >
-              <Snowflake size={20 + i * 4} />
-            </motion.div>
-          ))}
-        </div>
-
-        <div className="relative section-container py-20">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left Content */}
-            <div className="space-y-8 text-center flex flex-col items-center">
+      {/* Mobile Hero View (Hidden on md and up) */}
+      <div className="block md:hidden">
+        <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-linear-to-br from-blue-50 via-white to-sky-50">
+          {/* Background Patterns */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute top-20 right-20 w-72 h-72 bg-blue-100 rounded-full blur-3xl opacity-40" />
+            <div className="absolute bottom-20 left-20 w-96 h-96 bg-sky-100 rounded-full blur-3xl opacity-30" />
+            <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-blue-50 rounded-full blur-2xl opacity-50" />
+            {/* Floating snowflakes */}
+            {[...Array(6)].map((_, i) => (
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
+                key={i}
+                className="absolute text-blue-200"
+                style={{
+                  top: `${15 + i * 15}%`,
+                  left: `${10 + i * 15}%`,
+                }}
+                animate={{
+                  y: [0, -20, 0],
+                  rotate: [0, 180, 360],
+                  opacity: [0.3, 0.6, 0.3],
+                }}
+                transition={{
+                  duration: 4 + i,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: i * 0.5,
+                }}
               >
-                <span className="inline-flex items-center gap-2 bg-blue-100 text-[#1e3a5f] px-4 py-2 rounded-full text-sm font-medium">
-                  <Snowflake size={16} />
-                  Sales & Services
-                </span>
+                <Snowflake size={20 + i * 4} />
               </motion.div>
+            ))}
+          </div>
 
-              <motion.h1
-                className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-gray-900 tracking-tight"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-              >
-                Mechanical Wings{" "}
-                <span className="gradient-text">Air Condition</span>
-              </motion.h1>
-
-              <motion.p
-                className="text-lg text-gray-600 max-w-lg leading-relaxed tracking-wide"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                Your trusted partner for professional air conditioning
-                installation, maintenance, and repair services. Keeping
-                Ahmedabad cool with premium quality service.
-              </motion.p>
-
-              <motion.div
-                className="flex flex-wrap gap-4 justify-center"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-              >
-                <Link
-                  href="/contact"
-                  className="btn-animate inline-flex items-center gap-2 bg-linear-to-r from-amber-500 to-amber-600 text-white px-8 py-4 rounded-full font-semibold hover:from-amber-600 hover:to-amber-700 shadow-lg pulse-glow"
+          <div className="relative section-container py-20">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              {/* Left Content */}
+              <div className="space-y-8 text-center flex flex-col items-center">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
                 >
-                  <Phone size={18} />
-                  Get Free Quote
-                </Link>
-                <Link
-                  href="/services"
-                  className="btn-animate inline-flex items-center gap-2 bg-white text-[#1e3a5f] px-8 py-4 rounded-full font-semibold border-2 border-blue-200 hover:border-blue-400 hover:bg-blue-50"
-                >
-                  Our Services
-                  <ChevronRight size={18} />
-                </Link>
-              </motion.div>
+                  <span className="inline-flex items-center gap-2 bg-blue-100 text-[#1e3a5f] px-4 py-2 rounded-full text-sm font-medium">
+                    <Snowflake size={16} />
+                    Sales & Services
+                  </span>
+                </motion.div>
 
-              {/* Trust Badges */}
-              <motion.div
-                className="flex items-center gap-6 pt-4 justify-center"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-              >
-                <div className="flex items-center gap-2">
-                  <div className="flex -space-x-1">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        size={16}
-                        className="text-yellow-400 fill-yellow-400"
-                      />
-                    ))}
+                <motion.h1
+                  className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-gray-900 tracking-tight"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                >
+                  Mechanical Wings{" "}
+                  <span className="gradient-text">Air Condition</span>
+                </motion.h1>
+
+                <motion.p
+                  className="text-lg text-gray-600 max-w-lg leading-relaxed tracking-wide"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                >
+                  Your trusted partner for professional air conditioning
+                  installation, maintenance, and repair services. Keeping
+                  Ahmedabad cool with premium quality service.
+                </motion.p>
+
+                <motion.div
+                  className="flex flex-wrap gap-4 justify-center"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                >
+                  <Link
+                    href="/contact"
+                    className="btn-animate inline-flex items-center gap-2 bg-linear-to-r from-amber-500 to-amber-600 text-white px-8 py-4 rounded-full font-semibold hover:from-amber-600 hover:to-amber-700 shadow-lg pulse-glow"
+                  >
+                    <Phone size={18} />
+                    Get Free Quote
+                  </Link>
+                  <Link
+                    href="/services"
+                    className="btn-animate inline-flex items-center gap-2 bg-white text-[#1e3a5f] px-8 py-4 rounded-full font-semibold border-2 border-blue-200 hover:border-blue-400 hover:bg-blue-50"
+                  >
+                    Our Services
+                    <ChevronRight size={18} />
+                  </Link>
+                </motion.div>
+
+                {/* Trust Badges */}
+                <motion.div
+                  className="flex items-center gap-6 pt-4 justify-center"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 0.5 }}
+                >
+                  <div className="flex items-center gap-2">
+                    <div className="flex -space-x-1">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          size={16}
+                          className="text-yellow-400 fill-yellow-400"
+                        />
+                      ))}
+                    </div>
+                    <span className="text-sm text-gray-500">5.0 Rating</span>
                   </div>
-                  <span className="text-sm text-gray-500">5.0 Rating</span>
-                </div>
-                <div className="w-px h-6 bg-gray-300" />
-                <span className="text-sm text-gray-500">
-                  GST Registered Business
-                </span>
-              </motion.div>
+                  <div className="w-px h-6 bg-gray-300" />
+                  <span className="text-sm text-gray-500">
+                    GST Registered Business
+                  </span>
+                </motion.div>
 
-              {/* Social Media Icons */}
+                {/* Social Media Icons */}
+                <motion.div
+                  className="flex items-center gap-4 pt-2"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 0.6 }}
+                >
+                  <span className="text-sm text-gray-500">Follow Us:</span>
+                  <div className="flex items-center gap-3">
+                    <a
+                      href="https://www.instagram.com/mechanicalwings3008?igsh=MTRiZ2lmN2k0cTNjNQ=="
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-9 h-9 bg-linear-to-br from-purple-600 via-pink-500 to-orange-400 rounded-lg flex items-center justify-center text-white hover:scale-110 transition-transform"
+                      aria-label="Instagram"
+                    >
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                      </svg>
+                    </a>
+                    <a
+                      href="https://facebook.com/share/1DK4CpscMY/?mibextid=wwXIfr"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-9 h-9 bg-[#1877F2] rounded-lg flex items-center justify-center text-white hover:scale-110 transition-transform"
+                      aria-label="Facebook"
+                    >
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                      </svg>
+                    </a>
+                    <a
+                      href="https://linkedin.com/in/mechanical-wings-air-condition-252693202"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-9 h-9 bg-[#0A66C2] rounded-lg flex items-center justify-center text-white hover:scale-110 transition-transform"
+                      aria-label="LinkedIn"
+                    >
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" />
+                      </svg>
+                    </a>
+                    <a
+                      href="https://www.twitter.com/mechanicalwings"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-9 h-9 bg-black rounded-lg flex items-center justify-center text-white hover:scale-110 transition-transform"
+                      aria-label="Twitter"
+                    >
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                      </svg>
+                    </a>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Right Content - Company Logo */}
               <motion.div
-                className="flex items-center gap-4 pt-2"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
+                className="relative hidden lg:flex items-center justify-center"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
               >
-                <span className="text-sm text-gray-500">Follow Us:</span>
-                <div className="flex items-center gap-3">
-                  <a
-                    href="https://www.instagram.com/mechanicalwings3008?igsh=MTRiZ2lmN2k0cTNjNQ=="
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-9 h-9 bg-linear-to-br from-purple-600 via-pink-500 to-orange-400 rounded-lg flex items-center justify-center text-white hover:scale-110 transition-transform"
-                    aria-label="Instagram"
+                <div className="relative">
+                  <motion.div
+                    className="relative z-10"
+                    animate={{ y: [0, -10, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                   >
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
-                    </svg>
-                  </a>
-                  <a
-                    href="https://facebook.com/share/1DK4CpscMY/?mibextid=wwXIfr"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-9 h-9 bg-[#1877F2] rounded-lg flex items-center justify-center text-white hover:scale-110 transition-transform"
-                    aria-label="Facebook"
-                  >
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                    </svg>
-                  </a>
-                  <a
-                    href="https://linkedin.com/in/mechanical-wings-air-condition-252693202"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-9 h-9 bg-[#0A66C2] rounded-lg flex items-center justify-center text-white hover:scale-110 transition-transform"
-                    aria-label="LinkedIn"
-                  >
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" />
-                    </svg>
-                  </a>
-                  <a
-                    href="https://www.twitter.com/mechanicalwings"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-9 h-9 bg-black rounded-lg flex items-center justify-center text-white hover:scale-110 transition-transform"
-                    aria-label="Twitter"
-                  >
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                    </svg>
-                  </a>
+                    <Image
+                      src="/logo-transparent.png"
+                      alt="Mechanical Wings Air Condition"
+                      width={500}
+                      height={310}
+                      className="drop-shadow-2xl"
+                      style={{ width: "auto", height: "auto" }}
+                      priority
+                    />  
+                  </motion.div>
+
+                  {/* Decorative glow behind logo */}
+                  <div className="absolute inset-0 bg-linear-to-br from-blue-200/30 to-amber-200/20 rounded-full blur-3xl -z-10 scale-75" />
                 </div>
               </motion.div>
             </div>
-
-            {/* Right Content - Company Logo */}
-            <motion.div
-              className="relative hidden lg:flex items-center justify-center"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <div className="relative">
-                <motion.div
-                  className="relative z-10"
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <Image
-                    src="/logo-transparent.png"
-                    alt="Mechanical Wings Air Condition"
-                    width={500}
-                    height={310}
-                    className="drop-shadow-2xl"
-                    style={{ width: "auto", height: "auto" }}
-                    priority
-                  />  
-                </motion.div>
-
-                {/* Decorative glow behind logo */}
-                <div className="absolute inset-0 bg-linear-to-br from-blue-200/30 to-amber-200/20 rounded-full blur-3xl -z-10 scale-75" />
-              </div>
-            </motion.div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
+
+      {/* Desktop Hero View (Hidden on mobile) */}
+      <div className="hidden md:block">
+        <ScrollVideoHero />
+      </div>
 
       {/* Stats Section */}
       <section className="py-16 bg-white">
@@ -516,7 +524,7 @@ export default function Home() {
               ))}
             </motion.div>
           </div>
-
+              
           <AnimatedSection className="text-center mt-10">
             <Link
               href="/brands"

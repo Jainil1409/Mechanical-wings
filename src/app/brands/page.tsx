@@ -20,11 +20,10 @@ const BrandLogo = ({ name, logo }: { name: string; logo: string }) => {
   
   return (
     <>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={logo}
         alt={`${name} logo`}
-        className="w-full h-full object-contain"
+        className="w-full h-full object-contain p-1 mix-blend-multiply"
         onError={() => setHasError(true)}
       />
     </>
@@ -36,79 +35,79 @@ const brands = [
     name: "Daikin",
     tier: "Premium",
     features: ["Inverter Technology", "Energy Efficient", "Japanese Quality"],
-    logo: "https://logo.clearbit.com/daikin.com",
+    logo: "/brands/daikin.svg",
   },
   {
     name: "Mitsubishi Electric",
     tier: "Premium",
     features: ["Heavy Duty", "Silent Operation", "Long Lasting"],
-    logo: "https://logo.clearbit.com/mitsubishielectric.com",
+    logo: "/brands/mitsubishi.png",
   },
   {
     name: "LG",
     tier: "Premium",
     features: ["Dual Inverter", "AI ThinQ", "10 Year Warranty"],
-    logo: "https://logo.clearbit.com/lg.com",
+    logo: "/brands/lg.svg",
   },
   {
     name: "Samsung",
     tier: "Premium",
     features: ["Wind-Free Cooling", "Triple Inverter", "Smart Things"],
-    logo: "https://logo.clearbit.com/samsung.com",
+    logo: "/brands/samsung.svg",
   },
   {
     name: "Carrier",
     tier: "Popular",
     features: ["Flexicool Technology", "PM 2.5 Filter", "Auto Cleanser"],
-    logo: "https://logo.clearbit.com/carrier.com",
+    logo: "/brands/carrier.svg",
   },
   {
     name: "Hitachi",
     tier: "Popular",
     features: ["iClean Technology", "Tropical Rotary Compressor", "Stable Cooling"],
-    logo: "https://logo.clearbit.com/hitachi.com",
+    logo: "/brands/hitachi.svg",
   },
   {
     name: "Blue Star",
     tier: "Popular",
     features: ["Precision Cooling", "iFeel Technology", "Made in India"],
-    logo: "https://logo.clearbit.com/bluestarindia.com",
+    logo: "/brands/bluestar.svg",
   },
   {
     name: "Voltas",
     tier: "Popular",
     features: ["Adjustable Inverter", "Copper Condenser", "Anti Dust Filter"],
-    logo: "https://logo.clearbit.com/voltas.com",
+    logo: "/brands/voltas.svg",
   },
   {
     name: "Whirlpool",
     tier: "Value",
     features: ["6th Sense Technology", "IntelliFrost", "Copper Coil"],
-    logo: "https://logo.clearbit.com/whirlpool.com",
+    logo: "/brands/whirlpool.svg",
   },
   {
     name: "Panasonic",
     tier: "Value",
     features: ["Nanoe-G Technology", "Econavi", "Twin Cool Inverter"],
-    logo: "https://logo.clearbit.com/panasonic.com",
+    logo: "/brands/panasonic.svg",
   },
   {
     name: "Godrej",
     tier: "Value",
     features: ["I-Sense Technology", "5-in-1 Convertible", "Eco Friendly"],
-    logo: "https://logo.clearbit.com/godrej.com",
+    logo: "/brands/godrej.svg",
   },
   {
     name: "Lloyd",
     tier: "Budget",
     features: ["Golden Fin Evaporator", "Low Gas Detection", "Anti Viral Filter"],
-    logo: "https://logo.clearbit.com/mylloyd.com",
+    logo: "/brands/lloyd.png",
   },
   {
     name: "Haier",
     tier: "Budget",
     features: ["Self Clean", "Turbo Cool", "5 Star Rating"],
-    logo: "https://logo.clearbit.com/haier.com",
+    logo: "/brands/haier.svg",
   },
 ];
 
@@ -191,8 +190,8 @@ export default function BrandsPage() {
                   className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl border border-gray-100 transition-all duration-300 h-full"
                   whileHover={{ y: -4 }}
                 >
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-16 h-12 bg-gray-50 rounded-lg flex items-center justify-center p-1 border border-gray-100">
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="w-28 h-20 bg-gray-50 rounded-lg flex items-center justify-center p-2 border border-gray-100">
                       <BrandLogo name={brand.name} logo={brand.logo} />
                     </div>
                     <span

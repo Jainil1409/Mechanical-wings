@@ -1,0 +1,5 @@
+const fs = require('fs');
+fs.writeFileSync('public/brands/voltas.svg', '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 150"><text x="50%" y="50%" font-family="sans-serif" font-weight="bold" font-size="80" fill="#000" text-anchor="middle" dominant-baseline="middle">VOLTAS</text></svg>');
+fs.writeFileSync('public/brands/samsung.svg', '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100"><text x="50%" y="50%" font-family="sans-serif" font-weight="900" font-size="70" fill="#1428a0" text-anchor="middle" dominant-baseline="middle" letter-spacing="-2">SAMSUNG</text></svg>');
+fs.writeFileSync('public/brands/godrej.svg', '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100"><text x="50%" y="50%" font-family="sans-serif" font-weight="900" font-size="70" fill="#e31837" text-anchor="middle" dominant-baseline="middle">Godrej</text></svg>');
+fs.writeFileSync('public/brands/bluestar.svg', '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100"><text x="50%" y="50%" font-family="sans-serif" font-weight="bold" font-size="60" fill="#002c5f" text-anchor="middle" dominant-baseline="middle">BLUE STAR</text></svg>');
