@@ -1,14 +1,14 @@
 "use client";
 
 import React, { useRef, useEffect, useState } from "react";
-import { useScroll, motion, useTransform, useMotionValueEvent } from "framer-motion";
+import { useScroll, motion, useTransform, useMotionValueEvent, useSpring } from "framer-motion";
 import { Snowflake, Phone, ChevronRight, Star, Loader2 } from "lucide-react";
 import Link from "next/link";
 
-const FRAME_COUNT = 240;
+const FRAME_COUNT = 78;
 
 const currentFrame = (index: number) => 
-  `/ezgif-84199cbc701b8229-jpg/ezgif-frame-${index.toString().padStart(3, '0')}.jpg`;
+  `/Create_a_hyper_realistic_D_ci_001/Create_a_hyper_realistic_D_ci_${index.toString().padStart(3, '0')}.jpg`;
 
 export default function ScrollVideoHero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -19,6 +19,12 @@ export default function ScrollVideoHero() {
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
+  });
+
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
   });
 
   // Preload images
@@ -83,7 +89,7 @@ export default function ScrollVideoHero() {
                   centerShift_x, centerShift_y, img.width * ratio, img.height * ratio);
   };
 
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+  useMotionValueEvent(smoothProgress, "change", (latest) => {
     if (images.length > 0) {
       const frameIndex = Math.min(
         FRAME_COUNT - 1,
@@ -128,7 +134,7 @@ export default function ScrollVideoHero() {
         {/* Overlay Content 1 - Intro */}
         <motion.div 
           className="absolute inset-0 flex flex-col items-center justify-center text-white p-6 z-10 text-center"
-          style={{ opacity: useTransform(scrollYProgress, [0, 0.08, 0.12], [1, 1, 0]) }}
+          style={{ opacity: useTransform(smoothProgress, [0, 0.08, 0.12], [1, 1, 0]) }}
         >
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -157,8 +163,8 @@ export default function ScrollVideoHero() {
         <motion.div 
           className="absolute right-[5%] md:right-[10%] top-[30%] bg-black/50 p-6 rounded-2xl border border-blue-500/40 max-w-sm backdrop-blur-md text-white shadow-2xl z-20"
           style={{ 
-            opacity: useTransform(scrollYProgress, [0.30, 0.35, 0.48, 0.53], [0, 1, 1, 0]),
-            x: useTransform(scrollYProgress, [0.30, 0.35], [50, 0])
+            opacity: useTransform(smoothProgress, [0.30, 0.35, 0.48, 0.53], [0, 1, 1, 0]),
+            x: useTransform(smoothProgress, [0.30, 0.35], [50, 0])
           }}
         >
           <div className="flex items-center gap-3 mb-3">
@@ -176,8 +182,8 @@ export default function ScrollVideoHero() {
          <motion.div 
           className="absolute left-[5%] md:left-[10%] bottom-[25%] bg-black/50 p-6 rounded-2xl border border-sky-500/40 max-w-sm backdrop-blur-md text-white shadow-2xl z-20"
           style={{ 
-            opacity: useTransform(scrollYProgress, [0.52, 0.57, 0.70, 0.75], [0, 1, 1, 0]),
-            x: useTransform(scrollYProgress, [0.52, 0.57], [-50, 0])
+            opacity: useTransform(smoothProgress, [0.52, 0.57, 0.70, 0.75], [0, 1, 1, 0]),
+            x: useTransform(smoothProgress, [0.52, 0.57], [-50, 0])
           }}
         >
           <div className="flex items-center gap-3 mb-3">
@@ -195,8 +201,8 @@ export default function ScrollVideoHero() {
         <motion.div 
           className="absolute right-[5%] md:right-[15%] top-[40%] bg-black/50 p-6 rounded-2xl border border-amber-500/40 max-w-sm backdrop-blur-md text-white shadow-2xl z-20"
           style={{ 
-            opacity: useTransform(scrollYProgress, [0.74, 0.79, 0.88, 0.93], [0, 1, 1, 0]),
-            x: useTransform(scrollYProgress, [0.74, 0.79], [50, 0])
+            opacity: useTransform(smoothProgress, [0.74, 0.79, 0.88, 0.93], [0, 1, 1, 0]),
+            x: useTransform(smoothProgress, [0.74, 0.79], [50, 0])
           }}
         >
           <div className="flex items-center gap-3 mb-3">
@@ -213,7 +219,7 @@ export default function ScrollVideoHero() {
         {/* Final CTA */}
         <motion.div 
           className="absolute inset-0 flex flex-col items-center justify-center text-white z-30 bg-black/40 backdrop-blur-sm"
-          style={{ opacity: useTransform(scrollYProgress, [0.93, 0.98], [0, 1]) }}
+          style={{ opacity: useTransform(smoothProgress, [0.93, 0.98], [0, 1]) }}
         >
           <h2 className="text-4xl md:text-6xl font-bold mb-6 text-center drop-shadow-lg">Experience Premium Cooling</h2>
           <p className="text-xl text-gray-200 mb-10 max-w-xl text-center">

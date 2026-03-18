@@ -1,5 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
- "use client";
+"use client";
 
 import { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -53,8 +52,6 @@ export default function CalculatorPage() {
   const [customerEmail, setCustomerEmail] = useState("");
   const [utrNumber, setUtrNumber] = useState("");
   const [adminCode, setAdminCode] = useState("");
-  const [receiptNo, setReceiptNo] = useState("");
-  const [invoiceDate, setInvoiceDate] = useState("");
 
   const toggleService = (id: string) => {
     setSelectedServices(prev => 
@@ -91,8 +88,6 @@ export default function CalculatorPage() {
         return;
       }
     }
-    if (step === 3) setReceiptNo(Math.floor(Math.random() * 90000) + 10000 + "");
-    if (step === 3) setInvoiceDate(new Date().toLocaleDateString('en-IN'));
     setStep(s => s + 1);
   };
 
@@ -452,7 +447,7 @@ export default function CalculatorPage() {
                   <span className="bg-[#1e3a5f] text-white w-6 h-6 rounded-full inline-flex justify-center items-center text-xs">2</span> 
                   Enter Approval Code
                 </h3>
-                <p className="text-sm text-gray-600 mb-5 pl-8">Once the admin replies with &quot;Done&quot; and your 4-digit Approval Code, enter it below to generate the invoice.</p>
+                <p className="text-sm text-gray-600 mb-5 pl-8">Once the admin replies with "Done" and your 4-digit Approval Code, enter it below to generate the invoice.</p>
                 <div className="pl-8 flex flex-col sm:flex-row gap-3">
                    <div className="relative">
                     <Lock className="absolute left-4 top-3.5 text-gray-400" size={18} />
@@ -511,9 +506,8 @@ export default function CalculatorPage() {
                   <div>
                     <img src="/logo-transparent.png" alt="Mechanical Wings" className="h-16 mb-4 filter contrast-100 grayscale-0" />
                     <h2 className="text-4xl font-black text-[#1e3a5f] tracking-tight">INVOICE</h2>
-                
-                    <p className="text-sm text-gray-500 font-mono mt-1">Receipt No: #{receiptNo}</p>
-                    <p className="text-sm text-gray-500">Date: {invoiceDate}</p>
+                    <p className="text-sm text-gray-500 font-mono mt-1">Receipt No: #{Math.floor(Math.random() * 90000) + 10000}</p>
+                    <p className="text-sm text-gray-500">Date: {new Date().toLocaleDateString('en-IN')}</p>
                     <p className="text-sm font-bold text-green-700 mt-2 bg-green-50 border border-green-100 px-3 py-1 rounded inline-flex items-center gap-1"><Hash size={14}/> UTR Verified: {utrNumber}</p>
                   </div>
                   <div className="text-left sm:text-right bg-gray-50 p-4 rounded-xl w-full sm:w-auto">

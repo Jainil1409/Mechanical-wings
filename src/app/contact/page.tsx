@@ -243,37 +243,63 @@ Please get back to me. Thank you!`;
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {contactInfo.map((info, index) => (
               <AnimatedSection key={info.title} delay={index * 0.1}>
-                <motion.div
-                  className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl border border-gray-100 transition-all duration-300 h-full text-center"
-                  whileHover={{ y: -4 }}
-                >
-                  <div
-                    className={`w-14 h-14 bg-linear-to-br ${info.color} rounded-xl flex items-center justify-center mb-5 mx-auto shadow-lg`}
+                {info.details[0]?.action ? (
+                  <a
+                    href={info.details[0].action}
+                    target={info.details[0].action.startsWith("http") ? "_blank" : undefined}
+                    rel={info.details[0].action.startsWith("http") ? "noopener noreferrer" : undefined}
+                    className="block h-full outline-none"
                   >
-                    <info.icon size={24} className="text-white" />
-                  </div>
-                  <h3 className="font-semibold text-gray-800 text-lg mb-3">
-                    {info.title}
-                  </h3>
-                  {info.details.map((detail) =>
-                    detail.action ? (
-                      <a
-                        key={detail.text}
-                        href={detail.action}
-                        target={detail.action.startsWith("http") ? "_blank" : undefined}
-                        rel={detail.action.startsWith("http") ? "noopener noreferrer" : undefined}
-                        className="block text-gray-600 text-sm break-all hover:text-blue-600 transition-colors cursor-pointer"
-                      >
-                        {detail.text}
-                      </a>
-                    ) : (
-                      <p key={detail.text} className="text-gray-600 text-sm break-all">
-                        {detail.text}
-                      </p>
-                    )
-                  )}
-                  <p className="text-gray-400 text-xs mt-2">{info.extra}</p>
-                </motion.div>
+                    <motion.div
+                      className="group relative bg-[#f8fafc] rounded-3xl p-6 lg:p-4 xl:p-6 border border-gray-200/60 shadow-xs hover:shadow-lg hover:border-blue-200 transition-all duration-300 h-full flex flex-col items-center justify-center text-center cursor-pointer"
+                      whileHover={{ y: -5 }}
+                    >
+                      <div className={`w-16 h-16 rounded-full bg-linear-to-br ${info.color} flex items-center justify-center mb-5 text-white shadow-md group-hover:scale-110 transition-transform duration-300`}>
+                        <info.icon size={26} strokeWidth={2.5} />
+                      </div>
+                      
+                      <h3 className="font-bold text-gray-900 text-lg mb-2">
+                        {info.title}
+                      </h3>
+                      
+                      <div className="space-y-1 mb-4 w-full">
+                        {info.details.map((detail) => (
+                           <p key={detail.text} className="text-gray-600 text-[13px] xl:text-sm font-medium whitespace-nowrap tracking-tight">
+                             {detail.text}
+                           </p>
+                        ))}
+                      </div>
+                      
+                      <span className="text-xs font-semibold text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity mt-auto flex items-center gap-1">
+                        Click to {info.title === "Phone" ? "Call" : info.title === "Email" ? "Email" : "View"}
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                      </span>
+                    </motion.div>
+                  </a>
+                ) : (
+                  <motion.div
+                    className="group relative bg-[#f8fafc] rounded-3xl p-6 lg:p-4 xl:p-6 border border-gray-200/60 shadow-xs hover:shadow-lg hover:border-blue-200 transition-all duration-300 h-full flex flex-col items-center justify-center text-center"
+                    whileHover={{ y: -5 }}
+                  >
+                    <div className={`w-16 h-16 rounded-full bg-linear-to-br ${info.color} flex items-center justify-center mb-5 text-white shadow-md group-hover:scale-110 transition-transform duration-300`}>
+                      <info.icon size={26} strokeWidth={2.5} />
+                    </div>
+                    
+                    <h3 className="font-bold text-gray-900 text-lg mb-2">
+                      {info.title}
+                    </h3>
+                    
+                    <div className="space-y-1 mb-4 w-full">
+                      {info.details.map((detail) => (
+                        <p key={detail.text} className="text-gray-600 text-[13px] xl:text-sm font-medium whitespace-nowrap tracking-tight">
+                          {detail.text}
+                        </p>
+                      ))}
+                    </div>
+                    
+                    <p className="text-gray-400 text-xs mt-auto font-medium">{info.extra}</p>
+                  </motion.div>
+                )}
               </AnimatedSection>
             ))}
           </div>

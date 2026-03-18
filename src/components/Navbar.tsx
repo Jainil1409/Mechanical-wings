@@ -13,7 +13,7 @@ const navLinks = [
   { href: "/services", label: "Services" },
   { href: "/brands", label: "Brands" },
   { href: "/contact", label: "Contact" },
-  { href: "/calculator", label: "AC Size Calculator" },
+  { href: "/booking", label: "Booking" },
   { href: "/social", label: "Follow Us" },
 ];
 
@@ -142,10 +142,10 @@ export default function Navbar() {
             {/* CTA Button */}
             <div className="hidden lg:flex items-center gap-4">
               <Link
-                href="/contact"
+                href="/booking"
                 className="bg-linear-to-r from-amber-500 to-amber-600 text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:from-amber-600 hover:to-amber-700 transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-amber-200 pulse-glow"
               >
-                Get a Quote
+                Book Service
               </Link>
             </div>
 
@@ -202,11 +202,11 @@ export default function Navbar() {
                   className="pt-2"
                 >
                   <Link
-                    href="/contact"
+                    href="/booking"
                     onClick={() => setIsOpen(false)}
                     className="block text-center bg-linear-to-r from-amber-500 to-amber-600 text-white px-6 py-3 rounded-full text-sm font-semibold"
                   >
-                    Get a Quote
+                    Book Service
                   </Link>
                 </motion.div>
               </div>
