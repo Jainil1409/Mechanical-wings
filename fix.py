@@ -1,8 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { NextResponse } from 'next/server';
+import os
+content = '''import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
-
-export const maxDuration = 30; // 30 seconds to allow SMTP to finish
 
 export async function POST(req: Request) {
   try {
@@ -32,14 +30,14 @@ export async function POST(req: Request) {
     });
 
     const mailOptions = {
-      from: `"Mechanical Wings" <${process.env.EMAIL_USER}>`,
+      from: \"Mechanical Wings" <\>\,
       to: customerEmail,
-      subject: `Invoice for your AC Services - Mechanical Wings (#${paymentId})`,
-      text: `Hello ${customerName},\n\nThank you for choosing Mechanical Wings! Your payment has been successfully processed.\n\nPlease find your officially generated invoice attached as a PDF document.\n\nKeep this invoice for your records. If you have any questions, feel free to contact us at +91 78019 29198.\n\nBest regards,\nThe Mechanical Wings Team`,
+      subject: \Invoice for your AC Services - Mechanical Wings (#\)\,
+      text: \Hello \,\\n\\nThank you for choosing Mechanical Wings! Your payment has been successfully processed.\\n\\nPlease find your officially generated invoice attached as a PDF document.\\n\\nKeep this invoice for your records. If you have any questions, feel free to contact us at +91 78019 29198.\\n\\nBest regards,\\nThe Mechanical Wings Team\,
       attachments: [
         {
-          filename: `Invoice_${paymentId}.pdf`,
-          content: Buffer.from(pdfData.split(',')[1] || pdfData, 'base64'),
+          filename: \Invoice_\.pdf\,
+          content: Buffer.from(pdfData.replace(/^data:application\\/pdf;base64,/, ""), 'base64'),
           contentType: 'application/pdf',
         }
       ]
@@ -53,3 +51,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: error.message || "Failed to send invoice" }, { status: 500 });
   }
 }
+'''
+with open('src/app/api/send-invoice/route.ts', 'w') as f:
+    f.write(content)

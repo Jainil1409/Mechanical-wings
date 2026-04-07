@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import Script from "next/script";
 import { motion, AnimatePresence } from "framer-motion";
 import html2canvas from "html2canvas-pro";
@@ -87,6 +87,69 @@ export default function CalculatorPage() {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   };
 
+  const emailSentRef = useRef(false);
+
+  useEffect(() => {
+    if (step === 4 && paymentId && !emailSentRef.current) {
+      emailSentRef.current = true;
+      
+      setTimeout(async () => {
+        const element = document.getElementById("invoice-container");
+        if (!element) return;
+        
+        const container = document.createElement("div");
+        container.className = "pdf-export-container";
+        container.style.position = "absolute";
+        container.style.top = "-9999px";
+        container.style.left = "-9999px";
+        container.style.width = "800px";
+        container.style.padding = "0";
+
+        const clonedElement = element.cloneNode(true) as HTMLElement;
+        const hideElements = clonedElement.querySelectorAll(".print\\:hidden");
+        hideElements.forEach(el => (el as HTMLElement).style.display = "none");
+        
+        container.appendChild(clonedElement);
+        document.body.appendChild(container);
+
+        try {
+          const canvas = await html2canvas(clonedElement, { 
+            windowWidth: 800, 
+            scale: 1.5, 
+            useCORS: true 
+          });
+          const imgData = canvas.toDataURL("image/jpeg", 0.7);
+          const pdfWidth = 210; // A4 width in mm
+          const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+          const finalHeight = Math.max(297, pdfHeight);
+          const pdf = new jsPDF({
+            orientation: "p",
+            unit: "mm",
+            format: [pdfWidth, finalHeight]
+          });
+          
+          pdf.addImage(imgData, "JPEG", 0, 0, pdfWidth, pdfHeight);
+          const pdfBase64 = pdf.output('datauristring');
+          
+          await fetch('/api/send-invoice', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              customerName,
+              customerEmail,
+              paymentId,
+              pdfData: pdfBase64
+            })
+          });
+        } catch (err) {
+          console.error("Failed to automatically send invoice:", err);
+        } finally {
+          document.body.removeChild(container);
+        }
+      }, 1000); // 1 second delay to ensure the UI has finished animating and rendering
+    }
+  }, [step, paymentId, customerName, customerEmail]);
+
   const downloadPDF = async () => {
     const element = document.getElementById("invoice-container");
     if (!element) return;
@@ -118,11 +181,14 @@ export default function CalculatorPage() {
         useCORS: true 
       });
       const imgData = canvas.toDataURL("image/png");
-      const pdf = new jsPDF("p", "mm", "a4");
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      
-      const imgProps = pdf.getImageProperties(imgData);
-      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+      const pdfWidth = 210; // A4 width in mm
+      const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+      const finalHeight = Math.max(297, pdfHeight);
+      const pdf = new jsPDF({
+        orientation: "p",
+        unit: "mm",
+        format: [pdfWidth, finalHeight]
+      });
       
       pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
       pdf.save("Mechanical_Wings_Invoice.pdf");
@@ -175,27 +241,6 @@ export default function CalculatorPage() {
           setInvoiceDate(newInvoiceDate);
           setStep(4); // Skip to invoice
           window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-
-          // Send invoice email
-          const invoiceServices = selectedServices.map(id => {
-            const srv = MAIN_SERVICES.find(s => s.id === id);
-            return { name: srv?.name, price: srv?.price };
-          });
-
-          fetch('/api/send-invoice', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              customerName,
-              customerEmail,
-              customerPhone,
-              services: invoiceServices,
-              totalAmount,
-              paymentId: response.razorpay_payment_id,
-              date: newInvoiceDate,
-              address: "N/A"
-            })
-          }).catch(err => console.error("Failed to send invoice:", err));
         },
         prefill: {
           name: customerName,
