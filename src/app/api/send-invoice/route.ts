@@ -31,7 +31,7 @@ export async function POST(req: Request) {
       }
     });
 
-    const mailOptions = {
+    const mailOptionsCustomer = {
       from: `"Mechanical Wings" <${process.env.EMAIL_USER}>`,
       to: customerEmail,
       subject: `Invoice for your AC Services - Mechanical Wings (#${paymentId})`,
@@ -45,7 +45,23 @@ export async function POST(req: Request) {
       ]
     };
 
-    await transporter.sendMail(mailOptions);
+    const mailOptionsAdmin = {
+      from: `"Mechanical Wings Website" <${process.env.EMAIL_USER}>`,
+      to: process.env.EMAIL_USER,
+      subject: `New Booking Received! - Payment #${paymentId}`,
+      text: `Hello Admin,\n\nA new booking has been received!\n\nCustomer: ${customerName}\nEmail: ${customerEmail}\nPayment ID: ${paymentId}\n\nPlease find the generated invoice attached containing all the booked services and the total amount.\n\nBest regards,\nMechanical Wings Auto-Mailer`,
+      attachments: [
+        {
+          filename: `Invoice_${paymentId}.pdf`,
+          content: Buffer.from(pdfData.split(',')[1] || pdfData, 'base64'),
+          contentType: 'application/pdf',
+        }
+      ]
+    };
+
+    // Send both emails
+    await transporter.sendMail(mailOptionsCustomer);
+    await transporter.sendMail(mailOptionsAdmin);
 
     return NextResponse.json({ success: true, message: "Invoice sent successfully" });
   } catch (error: any) {
